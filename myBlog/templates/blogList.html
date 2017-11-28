@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>The Fourth World</title>
+    <style>
+        .blog {
+            padding: 20px 0px;
+        }
+        .blog .info span {
+            padding-right: 10px;
+        }
+        .blog .summary {
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>The List of Blogs</h1>
+</div>
+
+{% for blog in blogs %}
+    <div class="blog">
+        <div class="title">
+            <a href=" {% url 'getBlogDetail' blog.id %}"><h2>{{ blog.title }}</h2></a>
+        </div>
+        <div class="info">
+            <span class="category" style="color: #ff9900;">{{ blog.category.name }}</span>
+            <span class="author" style="color: #4a86e8">{{ blog.author }}</span>
+            <span class="created" style="color: #6aa84f">{{ blog.created|date:"Y-m-d H:i" }}</span>
+        </div>
+        <div class="summary">
+            {{ blog.content|truncatewords:100 }}
+        </div>
+    </div>
+{% endfor %}
+
+</body>
+</html>
